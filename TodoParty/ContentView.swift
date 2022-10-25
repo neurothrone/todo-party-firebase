@@ -8,19 +8,23 @@
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
-        }
-        .padding()
+  @EnvironmentObject var authManager: AuthManager
+  
+  var body: some View {
+    Group {
+      if authManager.user != nil {
+        TodoListScreen()
+      } else {
+        AuthScreen()
+      }
     }
+    .onAppear(perform: authManager.listenToAuthState)
+  }
 }
 
 struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
+  static var previews: some View {
+    ContentView()
+      .environmentObject(AuthManager())
+  }
 }
