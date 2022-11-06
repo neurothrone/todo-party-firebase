@@ -18,6 +18,9 @@ struct ContentView: View {
         AuthScreen()
       }
     }
+    .alert(authManager.errorMessage, isPresented: $authManager.hasAuthenticationError) {
+      Button(action: {}, label: { Text("OK") })
+    }
     .onAppear(perform: authManager.listenToAuthState)
   }
 }

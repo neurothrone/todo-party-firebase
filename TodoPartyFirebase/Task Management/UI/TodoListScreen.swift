@@ -90,7 +90,7 @@ struct TodoListScreen: View {
 struct TodoListScreen_Previews: PreviewProvider {
   static var previews: some View {
     let todoManager = TodoManager()
-    todoManager.todos = TodoModel.Preview.samples
+    todoManager.todos = TodoItem.Preview.samples
     
     return TodoListScreen(todoManager: todoManager)
       .environmentObject(AuthManager())

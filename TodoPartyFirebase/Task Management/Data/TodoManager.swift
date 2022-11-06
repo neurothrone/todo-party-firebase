@@ -10,7 +10,7 @@ import FirebaseDatabase
 import SwiftUI
 
 final class TodoManager: ObservableObject {
-  @Published var todos: [TodoModel] = []
+  @Published var todos: [TodoItem] = []
   @Published var newTodoName = ""
   
   private lazy var databasePath: DatabaseReference? = {
@@ -43,7 +43,7 @@ final class TodoManager: ObservableObject {
       
       do {
         let todoData =  try JSONSerialization.data(withJSONObject: json)
-        let todo = try self.decoder.decode(TodoModel.self, from: todoData)
+        let todo = try self.decoder.decode(TodoItem.self, from: todoData)
         self.todos.append(todo)
       } catch {
         print("❌ -> Failed to observe todos. Error: \(error)")
@@ -62,7 +62,7 @@ final class TodoManager: ObservableObject {
       return
     }
     
-    let newTodo = TodoModel(name: newTodoName)
+    let newTodo = TodoItem(name: newTodoName)
     
     do {
       let data = try encoder.encode(newTodo)

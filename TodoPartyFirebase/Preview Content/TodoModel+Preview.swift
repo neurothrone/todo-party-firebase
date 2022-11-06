@@ -7,13 +7,13 @@
 
 import Foundation
 
-extension TodoModel {
+extension TodoItem {
   enum Preview {
-    static var sample: TodoModel {
+    static var sample: TodoItem {
       .init(id: UUID().uuidString, name: "Take a walk")
     }
     
-    static var samples: [TodoModel] {
+    static var samples: [TodoItem] {
       [
         .init(id: UUID().uuidString, name: "Take a walk"),
         .init(id: UUID().uuidString, name: "Buy groceries"),
